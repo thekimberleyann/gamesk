@@ -8,19 +8,19 @@
 
 import Link from "next/link";
 
-function WordleButton(){
+function KornWordleButton(){
   return(
     
-    <Link href="/wordle" className="bg-[#9B7BFF] hover:bg-[#3EDCFF] text-[black] px-4 py-2 rounded w-48 text-center">
-        Wordle
+    <Link href="/kornWordle" className="bg-[#9B7BFF] hover:bg-[#3EDCFF] text-[black] px-4 py-2 rounded w-48 text-center">
+        Korn Themed Wordle
     </Link>
   );
 }
 
-function HangmanButton(){
+function ClassicWordleButton(){
   return(
-    <Link href="/hangman" className="bg-[#9B7BFF] hover:bg-[#3EDCFF] text-[black] px-4 py-2 rounded w-48 text-center">
-        Hangman
+    <Link href="/wordle" className="bg-[#9B7BFF] hover:bg-[#3EDCFF] text-[black] px-4 py-2 rounded w-48 text-center">
+        Classic Wordle
     </Link>
   );
 }
@@ -42,8 +42,8 @@ export default function Home() {
 
       <nav className="flex flex-col items-center justify-center gap-6 mt-8">  
         {/* navigation container */}
-        <WordleButton/>
-        <HangmanButton/>
+        <KornWordleButton/>
+        <ClassicWordleButton/>
       </nav>
 
 
