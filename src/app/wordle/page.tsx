@@ -2,7 +2,7 @@
  * Wordle Page
  * Author: Kimberley Gonzalez
  * Created: December 2025
- * Current Task: 
+ * Current Task: Dictionary API
  */
 
 "use client";
@@ -14,22 +14,57 @@ export default function Wordle() {
     const [secretWord, setSecretWord] = useState("HELLO");
     const[guesses,setGuesses] = useState([]);
     const[currentGuess,setCurrentGuess] = useState("");
+    const [isChecking, setIsChecking] = useState(false);
+    const [message, setMessage] = useState("");
+
+    // Check if word exists in dictionary
+    async function checkWord(word) {
+        const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+        return response.ok;
+    }
+
+    // Handle submitting a guess
+    async function submitGuess() {
+        if (currentGuess.length !== 5) return;
+
+        if (guesses.includes(currentGuess)) {
+            setMessage("You cannot guess the same word.");
+            return;
+        }
+
+        setIsChecking(true);
+        setMessage("Checking word...");
+
+        const isValid = await checkWord(currentGuess.toLowerCase());
+
+        if (!isValid) {
+            setMessage("Not a valid word.");
+            setIsChecking(false);
+            return;
+        }
+
+        setGuesses([...guesses, currentGuess]);
+        setCurrentGuess("");
+        setMessage("");
+        setIsChecking(false);
+    }
 
     useEffect(() => {
         function handleKeyDown(event) {
             console.log(event.key);
             const key = event.key.toUpperCase();
 
+            if (isChecking) return; // Ignore input while checking
+
             if (key === "BACKSPACE") {
                 setCurrentGuess(currentGuess.slice(0, -1));
+                setMessage(""); // Clear any error message
             } else if (key === "ENTER") {
-                if (currentGuess.length === 5) {
-                    setGuesses([...guesses, currentGuess]);
-                    setCurrentGuess("");
-                }
+                submitGuess();
             } else if (key.length === 1 && key >= "A" && key <= "Z") {
                 if (currentGuess.length < 5) {
                     setCurrentGuess(currentGuess + key);
+                    setMessage(""); // Clear any error message
                 }
             }
         }
@@ -40,7 +75,7 @@ export default function Wordle() {
             window.removeEventListener("keydown", handleKeyDown);
         };
 
-    },[currentGuess, guesses]);
+    },[currentGuess, guesses, isChecking]);
 
   return (
     <>
@@ -74,6 +109,7 @@ export default function Wordle() {
     <div className="text-[white] m-8">
       <h1>Wordle Game: {value} </h1>
       <p>{currentGuess}</p>
+      <p>{message}</p>
     </div>
 
     </>
