@@ -104,7 +104,7 @@ export default function Wordle() {
     ];
 
     // Check if specific hint is affordable
-    function canAffordHint(cost) {
+    function canAffordHint(cost: number) {
         return stats.totalScore >= cost;
     }
 
@@ -114,7 +114,7 @@ export default function Wordle() {
     }
 
     // Calculate final score
-    function calculateFinalScore(won, wrongGuesses, hintPenaltyAmount) {
+    function calculateFinalScore(won: boolean, wrongGuesses: number, hintPenaltyAmount: number) {
         if (!won) {
             return 0 - hintPenaltyAmount;
         }
@@ -124,7 +124,7 @@ export default function Wordle() {
     }
 
     // Update stats when game ends
-    function endGame(won, wrongGuesses) {
+    function endGame(won: boolean, wrongGuesses: number) {
         const finalScore = calculateFinalScore(won, wrongGuesses, hintPenalty);
         setGameScore(finalScore);
         
@@ -141,7 +141,7 @@ export default function Wordle() {
     }
 
     // Get colors for entire guess (handles duplicate letters)
-    function getGuessColors(guess) {
+    function getGuessColors(guess: string) {
         const colors = ["", "", "", "", ""];
         const secretLetters = secretWord.split("");
         
@@ -168,7 +168,7 @@ export default function Wordle() {
     }
 
     // Update used letters after a guess
-    function updateUsedLetters(guess) {
+    function updateUsedLetters(guess: string) {
         const colors = getGuessColors(guess);
         const newUsedLetters = { ...usedLetters };
         
@@ -189,13 +189,13 @@ export default function Wordle() {
     }
 
     // Get keyboard key color
-    function getKeyColor(key) {
+    function getKeyColor(key: string) {
         if (key === "ENTER" || key === "DEL") return "bg-gray-400";
         return usedLetters[key] || "bg-gray-300";
     }
 
     // Handle keyboard click
-    function handleKeyClick(key) {
+    function handleKeyClick(key: string) {
         if (isChecking || gameWon || gameLost) return;
         
         if (key === "DEL") {
@@ -302,7 +302,7 @@ export default function Wordle() {
     }
 
     useEffect(() => {
-        function handleKeyDown(event) {
+        function handleKeyDown(event: KeyboardEvent) {
             const key = event.key.toUpperCase();
 
             if (isChecking || gameWon || gameLost || showHintOptions) return;
