@@ -418,7 +418,7 @@ export default function ClassicWordle() {
     )}
 
     {stats.totalScore < getCurrentHintCost() && hintsUsed < MAX_HINTS && !gameWon && !gameLost && (
-        <p className="mt-4 text-red-400 text-sm">Not enough points for hint (need {getCurrentHintCost()})</p>
+        <p className="mt-4 text-red-400 text-sm">Not enough points for hint! (need {getCurrentHintCost()})</p>
     )}
 
     {/* Hint Options Popup */}
