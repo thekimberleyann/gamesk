@@ -57,16 +57,16 @@ export default function ClassicWordle() {
     }
 
     const [secretWord] = useState(getRandomWord);
-    const [guesses, setGuesses] = useState([]);
+    const [guesses, setGuesses] = useState<string[]>([]);
     const [currentGuess, setCurrentGuess] = useState("");
     const [isChecking, setIsChecking] = useState(false);
     const [message, setMessage] = useState("");
     const [gameWon, setGameWon] = useState(false);
     const [gameLost, setGameLost] = useState(false);
-    const [usedLetters, setUsedLetters] = useState({});
+    const [usedLetters, setUsedLetters] = useState<{ [key: string]: string }>({});
     const [hintsUsed, setHintsUsed] = useState(0);
     const [showHintOptions, setShowHintOptions] = useState(false);
-    const [revealedLetters, setRevealedLetters] = useState([null, null, null, null, null]);
+    const [revealedLetters, setRevealedLetters] = useState<(string | null)[]>([null, null, null, null, null]);
     
     // Scoring state
     const [gameScore, setGameScore] = useState(100);
@@ -139,7 +139,7 @@ export default function ClassicWordle() {
     // Get colors for entire guess (handles duplicate letters)
     function getGuessColors(guess: string) {
         const colors = ["", "", "", "", ""];
-        const secretLetters = secretWord.split("");
+        const secretLetters: (string | null)[] = secretWord.split("");
         
         for (let i = 0; i < 5; i++) {
             if (guess[i] === secretWord[i]) {
@@ -166,7 +166,7 @@ export default function ClassicWordle() {
     // Update used letters after a guess
     function updateUsedLetters(guess: string) {
         const colors = getGuessColors(guess);
-        const newUsedLetters = { ...usedLetters };
+        const newUsedLetters: { [key: string]: string } = { ...usedLetters };
         
         for (let i = 0; i < 5; i++) {
             const letter = guess[i];
@@ -210,9 +210,9 @@ export default function ClassicWordle() {
     // Use letter hint
     function useLetterHint() {
         const cost = getCurrentHintCost();
-        if (!canAffordHint()) return;
+        if (!canAffordHint(getCurrentHintCost())) return;
         
-        const availablePositions = [];
+        const availablePositions: number[] = [];
         for (let i = 0; i < 5; i++) {
             if (revealedLetters[i] === null) {
                 availablePositions.push(i);
@@ -403,7 +403,7 @@ export default function ClassicWordle() {
     </div>
 
     {/* Hint Button */}
-    {canAffordHint() && (
+    {canAffordHint(getCurrentHintCost()) && (
         <button 
             onClick={() => setShowHintOptions(true)}
             className="mt-4 bg-[#9B7BFF] text-white px-4 py-2 rounded hover:bg-purple-700"

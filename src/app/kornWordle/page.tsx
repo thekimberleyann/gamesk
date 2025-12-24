@@ -58,16 +58,16 @@ export default function Wordle() {
 
     const [wordData] = useState(getRandomWord);
     const [secretWord] = useState(wordData.word);
-    const [guesses, setGuesses] = useState([]);
+    const [guesses, setGuesses] = useState<string[]>([]);
     const [currentGuess, setCurrentGuess] = useState("");
     const [isChecking, setIsChecking] = useState(false);
     const [message, setMessage] = useState("");
     const [gameWon, setGameWon] = useState(false);
     const [gameLost, setGameLost] = useState(false);
-    const [usedLetters, setUsedLetters] = useState({});
+    const [usedLetters, setUsedLetters] = useState<{ [key: string]: string }>({});
     const [hintUsed, setHintUsed] = useState(false);
     const [showHintOptions, setShowHintOptions] = useState(false);
-    const [revealedLetters, setRevealedLetters] = useState([null, null, null, null, null]);
+    const [revealedLetters, setRevealedLetters] = useState<(string | null)[]>([null, null, null, null, null]);
     const [albumHint, setAlbumHint] = useState("");
     const [albumCoverHint, setAlbumCoverHint] = useState("");
     
@@ -143,7 +143,7 @@ export default function Wordle() {
     // Get colors for entire guess (handles duplicate letters)
     function getGuessColors(guess: string) {
         const colors = ["", "", "", "", ""];
-        const secretLetters = secretWord.split("");
+        const secretLetters: (string | null)[] = secretWord.split("");
         
         for (let i = 0; i < 5; i++) {
             if (guess[i] === secretWord[i]) {
@@ -170,7 +170,7 @@ export default function Wordle() {
     // Update used letters after a guess
     function updateUsedLetters(guess: string) {
         const colors = getGuessColors(guess);
-        const newUsedLetters = { ...usedLetters };
+        const newUsedLetters: { [key: string]: string } = { ...usedLetters };
         
         for (let i = 0; i < 5; i++) {
             const letter = guess[i];
@@ -252,7 +252,7 @@ export default function Wordle() {
     }
 
     // Check if word exists in dictionary
-    async function checkWord(word) {
+    async function checkWord(word: string) {
         const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
         return response.ok;
     }
