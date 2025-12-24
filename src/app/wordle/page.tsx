@@ -46,7 +46,7 @@ export default function ClassicWordle() {
     }
 
     // Save stats to localStorage
-    function saveStats(stats) {
+    function saveStats(stats: { totalScore: number; gamesPlayed: number; gamesWon: number; winStreak: number; bestScore: number }) {
         if (typeof window === "undefined") return;
         
         localStorage.setItem("totalScore", stats.totalScore.toString());
