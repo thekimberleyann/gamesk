@@ -11,7 +11,7 @@ import Link from "next/link";
 function KornWordleButton(){
   return(
     
-    <Link href="/kornWordle" className="bg-[#9B7BFF] hover:bg-[#3EDCFF] text-[black] px-4 py-2 rounded w-48 text-center">
+    <Link href="/kornWordle" className="bg-[#9B7BFF] hover:bg-gray-700 text-[white] px-4 py-2 rounded w-48 text-center">
         Korn Themed Wordle
     </Link>
   );
@@ -19,7 +19,7 @@ function KornWordleButton(){
 
 function ClassicWordleButton(){
   return(
-    <Link href="/wordle" className="bg-[#9B7BFF] hover:bg-[#3EDCFF] text-[black] px-4 py-2 rounded w-48 text-center">
+    <Link href="/wordle" className="bg-[#9B7BFF] hover:bg-gray-700 text-[white] px-4 py-2 rounded w-48 text-center">
         Classic Wordle
     </Link>
   );

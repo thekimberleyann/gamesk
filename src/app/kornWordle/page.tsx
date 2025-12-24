@@ -333,7 +333,7 @@ export default function Wordle() {
     {/* Home Button */}
     <Link 
         href="/" 
-        className="absolute top-4 left-4 bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+        className="absolute top-4 left-4 bg-[#9B7BFF] text-white px-4 py-2 rounded hover:bg-gray-700"
     >
         Home
     </Link>
@@ -355,7 +355,7 @@ export default function Wordle() {
     {/* Album Cover Hint Display */}
     {albumCoverHint && (
         <div className="mt-4 flex flex-col items-center">
-            <p className="text-yellow-400 mb-2">Album Cover:</p>
+            <p className="text-[#9B7BFF] mb-2">Song from the Album:</p>
             <img 
                 src={albumCoverHint} 
                 alt="Album cover hint" 
@@ -366,7 +366,7 @@ export default function Wordle() {
 
     {/* Album Name Hint Display */}
     {albumHint && (
-        <p className="text-yellow-400 mt-4">Album: {albumHint}</p>
+        <p className="text-[#9B7BFF] mt-4">Album Name: {albumHint}</p>
     )}
 
     {/* Revealed Letters Display */}
@@ -445,7 +445,7 @@ export default function Wordle() {
     {canUseAnyHint() && (
         <button 
             onClick={() => setShowHintOptions(true)}
-            className="mt-4 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+            className="mt-4 bg-[#9B7BFF] text-white px-4 py-2 rounded hover:bg-purple-700"
         >
             Use Hint
         </button>
@@ -467,21 +467,21 @@ export default function Wordle() {
                     <button 
                         onClick={useAlbumCoverHint}
                         disabled={!canAffordHint(HINT_COST_HARD)}
-                        className={`px-6 py-3 rounded ${canAffordHint(HINT_COST_HARD) ? "bg-red-500 text-white hover:bg-red-600" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
+                        className={`px-6 py-3 rounded ${canAffordHint(HINT_COST_HARD) ? "bg-[#7D1538] text-white hover:bg-red-600" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
                     >
                         Hard: Album Cover (-{HINT_COST_HARD} pts)
                     </button>
                     <button 
                         onClick={useAlbumNameHint}
                         disabled={!canAffordHint(HINT_COST_MEDIUM)}
-                        className={`px-6 py-3 rounded ${canAffordHint(HINT_COST_MEDIUM) ? "bg-yellow-500 text-white hover:bg-yellow-600" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
+                        className={`px-6 py-3 rounded ${canAffordHint(HINT_COST_MEDIUM) ? "bg-[#C57B57] text-white hover:bg-yellow-600" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
                     >
                         Medium: Album Name (-{HINT_COST_MEDIUM} pts)
                     </button>
                     <button 
                         onClick={useLetterHint}
                         disabled={!canAffordHint(HINT_COST_EASY)}
-                        className={`px-6 py-3 rounded ${canAffordHint(HINT_COST_EASY) ? "bg-green-500 text-white hover:bg-green-600" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
+                        className={`px-6 py-3 rounded ${canAffordHint(HINT_COST_EASY) ? "bg-[#1E555C] text-white hover:bg-green-600" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
                     >
                         Easy: Reveal a Letter (-{HINT_COST_EASY} pts)
                     </button>

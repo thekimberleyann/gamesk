@@ -315,7 +315,7 @@ export default function ClassicWordle() {
     {/* Home Button */}
     <Link 
         href="/" 
-        className="absolute top-4 left-4 bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+        className="absolute top-4 left-4 bg-[#9B7BFF] text-white px-4 py-2 rounded hover:bg-gray-700"
     >
         Home
     </Link>
@@ -406,7 +406,7 @@ export default function ClassicWordle() {
     {canAffordHint() && (
         <button 
             onClick={() => setShowHintOptions(true)}
-            className="mt-4 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+            className="mt-4 bg-[#9B7BFF] text-white px-4 py-2 rounded hover:bg-purple-700"
         >
             Use Hint ({hintsUsed}/{MAX_HINTS})
         </button>
@@ -418,20 +418,20 @@ export default function ClassicWordle() {
     )}
 
     {stats.totalScore < getCurrentHintCost() && hintsUsed < MAX_HINTS && !gameWon && !gameLost && (
-        <p className="mt-4 text-red-400 text-sm">Not enough points for hint (need {getCurrentHintCost()})</p>
+        <p className="mt-4 text-[#7D1538] text-sm">Not enough points for hint (need {getCurrentHintCost()})</p>
     )}
 
     {/* Hint Options Popup */}
     {showHintOptions && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white text-black p-8 rounded-lg text-center max-w-sm">
+            <div className="bg-[#9B7BFF] text-black p-8 rounded-lg text-center max-w-sm">
                 <h2 className="text-2xl font-bold mb-2">Reveal a Letter</h2>
                 <p className="mb-2 text-gray-600">Hints used: {hintsUsed}/{MAX_HINTS}</p>
                 <p className="mb-6 text-gray-600">Your points: {stats.totalScore}</p>
                 <div className="flex flex-col gap-4">
                     <button 
                         onClick={useLetterHint}
-                        className="bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600"
+                        className="bg-[#1E555C] text-white px-6 py-3 rounded hover:bg-green-600"
                     >
                         Reveal Letter (-{getCurrentHintCost()} pts)
                     </button>
@@ -449,7 +449,7 @@ export default function ClassicWordle() {
     {/* Win Popup */}
     {gameWon && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white text-black p-8 rounded-lg text-center">
+            <div className="bg-[#9B7BFF] text-black p-8 rounded-lg text-center">
                 <h2 className="text-3xl font-bold mb-4">Congratulations!</h2>
                 <p className="text-xl mb-2">You guessed the word!</p>
                 <p className="text-2xl font-bold text-green-600 mb-4">{secretWord}</p>
@@ -471,7 +471,7 @@ export default function ClassicWordle() {
     {/* Game Over Popup */}
     {gameLost && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white text-black p-8 rounded-lg text-center">
+            <div className="bg-[#9B7BFF] text-black p-8 rounded-lg text-center">
                 <h2 className="text-3xl font-bold mb-4">Game Over</h2>
                 <p className="text-xl mb-2">The word was:</p>
                 <p className="text-2xl font-bold text-red-600 mb-4">{secretWord}</p>
